@@ -86,8 +86,6 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    compileSdkVersion 34
-
     namespace 'com.oldstager01.sportified'
     defaultConfig {
         applicationId 'com.oldstager01.sportified'
@@ -125,12 +123,6 @@ android {
     }
     androidResources {
         ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
-    }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
     }
 }
 
@@ -181,11 +173,4 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-        implementation fileTree(dir: "libs", include: ["*.jar"])
-    
-    //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-android:+"
 }
-
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
