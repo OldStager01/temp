@@ -1,0 +1,27 @@
+pluginManagement {
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+  }
+}
+
+rootProject.name = 'Sportified'
+
+// Import React Native Gradle Plugin
+includeBuild(new File(["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json')"].execute(null, rootDir).text.trim()).getParent())
+
+// Apply Expo's autolinking configuration
+apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle")
+useExpoModules()
+
+include ':app'
+
+// Add this for React Native dependency resolution
+dependencyResolutionManagement {
+  versionCatalogs {
+    reactAndroidLibs {
+      from(files(new File(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim(), "../gradle/libs.versions.toml")))
+    }
+  }
+}
