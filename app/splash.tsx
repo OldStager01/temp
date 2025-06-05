@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { SplashScreenNavigationProp } from './types/navigation';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  Dimensions,
+  Image,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Splashscreen() {
-  const navigation = useNavigation<SplashScreenNavigationProp>();
+  const navigation = useNavigation<any>();
   const [fadeAnim] = useState(new Animated.Value(0));
   const [scaleAnim] = useState(new Animated.Value(0.8));
   const [slideAnim] = useState(new Animated.Value(30));
-  const { width, height } = Dimensions.get('window');
+  const { width, height } = Dimensions.get("window");
 
   useEffect(() => {
     // Animation sequence
@@ -31,7 +37,7 @@ export default function Splashscreen() {
     ]).start(() => {
       // After animation completes, wait for 1.5 seconds then navigate to Login
       setTimeout(() => {
-        navigation.replace('Login');
+        navigation.replace("Login");
       }, 1500);
     });
   }, [fadeAnim, scaleAnim, slideAnim, navigation]);
@@ -43,15 +49,12 @@ export default function Splashscreen() {
           styles.content,
           {
             opacity: fadeAnim,
-            transform: [
-              { scale: scaleAnim },
-              { translateY: slideAnim },
-            ],
+            transform: [{ scale: scaleAnim }, { translateY: slideAnim }],
           },
         ]}
       >
         <Image
-          source={require('../assets/images/Spl.png')}
+          source={require("../assets/images/Spl.png")}
           style={styles.logo}
           resizeMode="contain"
         />
@@ -65,12 +68,12 @@ export default function Splashscreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
   content: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   logo: {
     width: 150,
@@ -79,12 +82,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1e90ff',
+    fontWeight: "bold",
+    color: "#1e90ff",
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: "#666",
   },
 });

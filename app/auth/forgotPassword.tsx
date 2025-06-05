@@ -8,15 +8,14 @@ import {
   Alert,
 } from "react-native";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+import { auth } from "../../services/firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
-import type { ForgotPasswordScreenNavigationProp } from "./types/navigation";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigation<ForgotPasswordScreenNavigationProp>();
+  const navigation = useNavigation<any>();
 
   const handleResetPassword = async () => {
     if (!email) {

@@ -13,12 +13,11 @@ import {
   GoogleAuthProvider,
   signInWithCredential,
 } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+import { auth } from "../../services/firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
-import type { SignupScreenNavigationProp } from "./types/navigation";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -29,7 +28,7 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
-  const navigation = useNavigation<SignupScreenNavigationProp>();
+  const navigation = useNavigation<any>();
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
     clientId: "450933998064-eaca3a9d2c199a0e715d35.apps.googleusercontent.com",
@@ -134,7 +133,7 @@ export default function Signup() {
           disabled={isGoogleLoading}
         >
           <Image
-            source={require("../assets/images/email.png")}
+            source={require("../../assets/images/email.png")}
             style={styles.optionIcon}
           />
           <Text style={styles.optionText}>Sign up with Email</Text>
@@ -153,7 +152,7 @@ export default function Signup() {
           ) : (
             <>
               <Image
-                source={require("../assets/images/google_icon.png")}
+                source={require("../../assets/images/google_icon.png")}
                 style={styles.googleIcon}
               />
               <Text style={styles.googleButtonText}>Sign up with Google</Text>

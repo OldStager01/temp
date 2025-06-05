@@ -61,7 +61,7 @@ const ProfileScreen = ({ navigation }: any) => {
             source={
               user?.photoURL
                 ? { uri: user.photoURL }
-                : require("../assets/images/default-avatar.png")
+                : require("../../assets/images/default-avatar.png")
             }
             style={styles.profileImage}
           />

@@ -13,11 +13,10 @@ import {
   GoogleAuthProvider,
   signInWithCredential,
 } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+import { auth } from "../../services/firebaseConfig";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import { useNavigation } from "@react-navigation/native";
-import type { LoginScreenNavigationProp } from "./types/navigation";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -25,7 +24,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigation<LoginScreenNavigationProp>();
+  const navigation = useNavigation<any>();
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
     clientId: "450933998064-eaca3a9d2c199a0e715d35.apps.googleusercontent.com",
@@ -37,7 +36,7 @@ export default function Login() {
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential)
         .then(() => {
-          navigation.navigate("MainTabs", { screen: "Home" });
+          navigation.navigate("index", { screen: "index" });
         })
         .catch((error) => {
           Alert.alert("Google Sign-in Error", error.message);
@@ -54,7 +53,7 @@ export default function Login() {
     try {
       setIsLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
-      navigation.replace("MainTabs", { screen: "Home" });
+      navigation.replace("index", { screen: "index" });
     } catch (error: any) {
       let errorMessage = "An error occurred during login";
       switch (error.code) {
@@ -129,7 +128,7 @@ export default function Login() {
         disabled={!request || isLoading}
       >
         <Image
-          source={require("../assets/images/google_icon.png")}
+          source={require("../../assets/images/google_icon.png")}
           style={styles.googleIcon}
         />
         <Text style={styles.googleButtonText}>Sign in with Google</Text>

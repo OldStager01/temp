@@ -5,6 +5,7 @@ export default {
     name: "Sportified",
     slug: "Sportified",
     version: "1.0.0",
+    sdkVersion: "52.0.0",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
     userInterfaceStyle: "automatic",
@@ -47,6 +48,12 @@ export default {
       ],
       "expo-secure-store",
     ],
+    extra: {
+      eas: {
+        projectId: "70b4c064-ea72-4d93-868f-50f9f44612ce",
+      },
+    },
+    entryPoint: "./index.tsx",
   },
   experiments: {
     typedRoutes: true,

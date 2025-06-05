@@ -3,22 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "../types/navigation";
 
-type BookingConfirmationScreenNavigationProp =
-  NativeStackNavigationProp<RootStackParamList>;
-type BookingConfirmationScreenRouteProp = RouteProp<
-  RootStackParamList,
-  "BookingConfirmation"
->;
+type BookingConfirmationScreenNavigationProp = NativeStackNavigationProp<any>;
+type BookingConfirmationScreenRouteProp = RouteProp<any, "BookingConfirmation">;
 
 export default function BookingConfirmation() {
   const navigation = useNavigation();
   const route = useRoute<BookingConfirmationScreenRouteProp>();
-  const { sport, date, time } = route.params;
+  const { sport, date, time } = route.params || {};
 
   const handleDone = () => {
-    navigation.navigate("MainTabs" as any, { screen: "Home" });
+    navigation.navigate("index" as any, { screen: "index" });
   };
 
   return (

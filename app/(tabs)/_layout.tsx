@@ -1,80 +1,66 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from "expo-router";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider";
+import { Redirect } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
+  const { user, loading } = useContext(AuthContext);
+
+  // If the user is not logged in, redirect to the auth group
+  if (!loading && !user) {
+    return <Redirect href="/auth/login" />;
+  }
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#1e90ff',
-        headerShown: false,
+        tabBarActiveTintColor: "#1e90ff",
+        tabBarInactiveTintColor: "#999",
         tabBarStyle: {
-          ...Platform.select({
-            ios: {
-              position: 'absolute',
-            },
-            default: {},
-          }),
-          backgroundColor: '#fff',
-          borderTopWidth: 1,
-          borderTopColor: '#eee',
+          paddingBottom: 5,
           height: 60,
-          paddingBottom: 5
         },
-      }}>
+        headerShown: false,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons 
-              name="home" 
-              size={24} 
-              color={color}
-              style={{ opacity: focused ? 1 : 0.7 }}
+          title: "Home",
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons
+              name={focused ? "home" : "home-outline"}
+              size={24}
+              color={focused ? "#1e90ff" : "#999"}
             />
           ),
-        }}
-      />
-      <Tabs.Screen
-        name="search"
-        options={{
-          title: 'Search',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons 
-              name="search" 
-              size={24} 
-              color={color}
-              style={{ opacity: focused ? 1 : 0.7 }}
-            />
-          ),
+          headerShown: true,
         }}
       />
       <Tabs.Screen
         name="chatbot"
         options={{
-          title: 'Bot',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons 
-              name="chatbubble-ellipses" 
-              size={24} 
-              color={color}
-              style={{ opacity: focused ? 1 : 0.7 }}
+          title: "Chatbot",
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons
+              name={focused ? "chatbubble" : "chatbubble-outline"}
+              size={24}
+              color={focused ? "#1e90ff" : "#999"}
             />
           ),
+          headerShown: true,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons 
-              name="person" 
-              size={24} 
-              color={color}
-              style={{ opacity: focused ? 1 : 0.7 }}
+          title: "Profile",
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
+              size={24}
+              color={focused ? "#1e90ff" : "#999"}
             />
           ),
         }}

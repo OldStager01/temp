@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
-import { getResponse } from "../services/getResponse";
+import { getResponse } from "../../services/getResponse";
 
 export default function ChatScreen() {
   const [chats, setChats] = useState([]);
@@ -63,7 +63,10 @@ export default function ChatScreen() {
     const updatedMessages = [...messages, newMsg];
     setMessages(updatedMessages);
     setInput("");
+    console.log("Sending...");
+
     const response = await getResponse(input, history);
+    console.log("RESPONSE", response);
     const modelMsg = {
       text: response,
       sender: "model",

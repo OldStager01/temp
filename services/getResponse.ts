@@ -11,7 +11,12 @@ export const getResponse = async (prompt: string, history: any) => {
       systemInstruction,
     },
   });
-
-  const response = await chat.sendMessage({ message: prompt });
-  return response.text;
+  console.log("Sending Response");
+  try {
+    const response = await chat.sendMessage({ message: prompt });
+    console.log("Response Received", response);
+    return response.text;
+  } catch (error) {
+    console.log("Error", error);
+  }
 };
