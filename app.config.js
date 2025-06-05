@@ -53,7 +53,6 @@ export default {
         projectId: "70b4c064-ea72-4d93-868f-50f9f44612ce",
       },
     },
-    entryPoint: "./index.tsx",
   },
   experiments: {
     typedRoutes: true,

@@ -21,6 +21,13 @@
       "android": {
         "buildType": "apk"
       }
+    },
+    "debug-apk": {
+      "android": {
+        "buildType": "apk"
+      },
+      "developmentClient": true,
+      "distribution": "internal"
     }
   },
   "submit": {
